@@ -9,9 +9,13 @@ export const instructions = [];
 
 // TOFIX: imprimer la chanson correctement
 for (var i = 0; i < paroles.length; i++) {
-  instructions.push(function printNextLine() {
-    return paroles[i] + ", " + paroles[i];
-  });
+
+  instructions.push(function(x) {
+    return function() {
+      return paroles[x] + ", " + paroles[x];
+    }
+  }(i));
+
 }
 
 // code de test, à essayer en console pour voir le problème

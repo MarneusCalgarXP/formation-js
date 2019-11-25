@@ -11,15 +11,15 @@ const products = [
 
 export function getProductNames(products) {
   // retourne la liste des noms des produits (méthode map de Array)
-  return [];
+  return products.map(p => p.name);
 }
 
 export function getFruits(products) {
   // retourne les fruits uniquement (méthode filter de Array)
-  return [];
+  return products.filter(p => p.type === 'fruit');
 }
 
 export function calcTotalPrice(products) {
   // retourne le prix total des produits (méthode reduce de Array)
-  return 0;
+  return products.reduce((a, p) => a + p.unitPrice * p.quantity, 0);
 }
