@@ -16,8 +16,7 @@ export const user = {
 Object.setPrototypeOf(user, person);
 
 // TODO: assigner user comme prototype
-export const bob = Object.create(user);
-Object.assign(bob, {
+export const bob = Object.assign(Object.create(user), {
   name: "Afett",
   first: "Bob",
   rights: ["create", "read"]
