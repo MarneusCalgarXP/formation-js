@@ -3,15 +3,28 @@ export function Observable(action) {
   action({
     emit: (value) => {
       //TODO: notifier les observateurs de la valeur émise
+      this.observers.forEach(o => o.onValue(value));
     },
     complete: () => {
       //TODO: notifier les observateurs de la complétion
+      this.observers.forEach(o => o.onComplete());
     }
   })
 }
 
 Observable.prototype.subscribe = function(observer) {
   //TODO: enregistrer l'observateur
+  this.observers.push(observer);
+  observer.unsubscribe = () => {
+      this.unsubscribe(observer);
+      delete observer.unsubscribe;
+  }
+  return observer
+};
+
+Observable.prototype.unsubscribe = function(observer) {
+  //TODO: désenregistrer l'observateur
+  this.observers = this.observers.filter(o => o !== observer);
   return observer
 };
 
