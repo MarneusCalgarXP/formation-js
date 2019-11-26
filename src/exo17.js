@@ -46,10 +46,15 @@ const Button = {
   render() {
     super.render();
     this.elm.textContent = this.text;
+    this.listenToClickEvents(this.elm);
+    this.listenToFocusEvents(this.elm);
     // TODO: écouter les événements clic et focus
     return this.elm;
-  }
+  },
+ ...Focusable,
+ ...Clickable
 };
+Object.setPrototypeOf(Button, Component);
 
 const Input = {
   value: null,
@@ -57,17 +62,24 @@ const Input = {
   render() {
     super.render();
     this.elm.value = this.value;
+    this.listenToClickEvents(this.elm);
+    this.listenToFocusEvents(this.elm);
+    this.listenToKeyboardEvents(this.elm);
     // TODO: écouter les événements keyup et focus
     return this.elm;
-  }
+  },
+  ...Editable,
+  ...Focusable,
+  ...Clickable
 };
+Object.setPrototypeOf(Input, Component);
 
-const TextInput = {
+const TextInput = Object.assign(Object.create(Input), {
   name: "text-input",
   onKey(event) {
     this.value = event.target.value;
   }
-};
+});
 
 //TODO: établir et coder les relations entre les différents objets: délégation, composition ou encapsulation
 
