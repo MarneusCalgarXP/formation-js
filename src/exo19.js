@@ -4,14 +4,11 @@ export const addAliasForProperties = (object, alias) => {
   // à une propriété de l'objet
 
   return new Proxy(object, {
-    get(obj, prop) {
-      if (obj.hasOwnProperty(prop)) {
-        return Reflect.get(obj, prop);
-      }
+    get(obj, prop) {     
       if (alias.hasOwnProperty(prop)) {
         return Reflect.get(obj, alias[prop]);
       }
-      return undefined;
+      return Reflect.get(obj, prop);
     }
   });
 };
