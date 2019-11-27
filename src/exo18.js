@@ -1,13 +1,12 @@
-export const range = (start, end) => {
-
-  return {
+export const range = (start, end) => ({
+  // retourner un itérable itérant entre les deux bornes numériques
+  
     [Symbol.iterator]: function*() {
       let i = start;
       while (i <= end) yield i++;
     }
-  }
-  // retourner un itérable itérant entre les deux bornes numériques
-};
+  
+  });
 
 // exemple d'utilisation
 // [...range(5,10)]
