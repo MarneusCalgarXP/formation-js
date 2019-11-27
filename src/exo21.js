@@ -5,11 +5,12 @@ import data from "../__tests__/fakedata.json";
 export function compose(f, ...fns) {
     
     return (...args) => {
-        let lastres = f(...args);//[...args]);
+        /*let lastres = f(...args);//[...args]);
         fns.forEach(fn => {
             lastres = fn(lastres);
         })
-        return lastres;
+        return lastres;*/
+        return fns.reduce((r, fn) => fn(r), f(...args));
     }
 }
 
