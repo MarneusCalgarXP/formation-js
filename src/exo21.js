@@ -5,13 +5,9 @@ import data from "../__tests__/fakedata.json";
 export function compose(f, ...fns) {
     
     return (...args) => {
-        console.log('input', args)
         let lastres = f(...args);//[...args]);
-        console.log('output', lastres)
         fns.forEach(fn => {
-            console.log('sub step input', lastres)
             lastres = fn(lastres);
-            console.log('sub step output', lastres)
         })
         return lastres;
     }
