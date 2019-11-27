@@ -2,8 +2,19 @@ import data from "../__tests__/fakedata.json";
 
 // TODO: implémenter une fonction qui retourne la composée de plusieurs fonctions
 // compose(f,g,h)(...args) <=> h(g(f(...args)))
-export function compose() {
-
+export function compose(f, ...fns) {
+    
+    return (...args) => {
+        console.log('input', args)
+        let lastres = f(...args);//[...args]);
+        console.log('output', lastres)
+        fns.forEach(fn => {
+            console.log('sub step input', lastres)
+            lastres = fn(lastres);
+            console.log('sub step output', lastres)
+        })
+        return lastres;
+    }
 }
 
 // les fonctions composées doivent être pures et non mutables
