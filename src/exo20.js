@@ -11,11 +11,21 @@ export const query = array =>
     orderBy(key) {
       //TODO: trier les éléments selon une propriété
       //return this.
-      let sortedValues = this.map(e => e[key]).sort();
-      let items = sortedValues.map(val => this.filter(e => e[key] === val));
+      /*let sortedValues = this.map(e => e[key]).sort();
+      let itemsByValue = sortedValues.map(val => this.filter(e => e[key] === val));
       let result = [];
-      items.forEach(subar =>  result.push(...subar));
-      return query(result);
+      itemsByValue.forEach(subarray =>  result.push(...subarray));
+      return query(result);*/
+
+      return query(
+          this.sort((a,b) => {
+              return (a[key] === b[key])
+                  ? 0
+                  : a[key] < b[key]
+                      ? -1
+                      : 1
+          })
+      );
     },
     take(number) {
       //TODO: retourner les N premiers éléments de la liste
