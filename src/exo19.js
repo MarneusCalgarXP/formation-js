@@ -24,15 +24,16 @@ export const countFunctionCalls = fn => {
   // TODO: retourner un Proxy pour la fonction permettant
   // de compter le nombre d'appels faits pour cette fonction,
   // stocké dans la propriété fn.count
-  let counter = 0;
+  //let counter = 0;
   return new Proxy(fn, {
+    counter : 0,
     apply(o, context, args) {
-      counter++;
+      this.counter++;
       return o.apply(context, args);
     },
     get(obj, prop) {
       if (prop === 'count') {
-        return counter;
+        return this.counter;
       }
       return undefined;
     }
