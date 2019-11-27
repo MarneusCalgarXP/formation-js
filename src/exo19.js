@@ -29,7 +29,7 @@ export const countFunctionCalls = fn => {
     counter : 0,
     apply(o, context, args) {
       this.counter++;
-      return o.apply(context, args);
+      return Reflect.apply(o, context, args);
     },
     get(obj, prop) {
       if (prop === 'count') {
