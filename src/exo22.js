@@ -12,17 +12,14 @@ export { compose } from "./exo21";
 // ASTUCE: fn.length retourne le nombre d'arguments dans la signature de la fonction
 export const curry = (fn, ...savedArgs) => {
     // si j'ai tous les arguments, j'invoque ma fonction fn avec ces arguments
-    console.log('curry', fn, fn.length, savedArgs.length, savedArgs)
     if (fn.length === savedArgs.length) {
-        console.log('curry call func', fn, savedArgs.length, ...savedArgs)
         return fn(...savedArgs);
     } 
     
     // sinon, je retourne une fonction qui prendra les paramètres restants
     // ASTUCE: utiliser récursivement la fonction curry
     return (...args) => {
-        console.log('call curry', fn, fn.length, savedArgs.length, savedArgs, args.length, args)
-        return curry(fn, ...savedArgs.concat(args));
+        return curry(fn, ...[...savedArgs, ...args]);
     }
 
 }
