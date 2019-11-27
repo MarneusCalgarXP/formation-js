@@ -1,8 +1,8 @@
 export const range = (start, end) => {
 
-  let i = start;
   return {
     [Symbol.iterator]: function*() {
+      let i = start;
       while (i <= end) yield i++;
     }
   }
