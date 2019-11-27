@@ -19,7 +19,7 @@ export const curry = (fn, ...savedArgs) => {
     // sinon, je retourne une fonction qui prendra les paramètres restants
     // ASTUCE: utiliser récursivement la fonction curry
     return (...args) => {
-        return curry(fn, ...[...savedArgs, ...args]);
+        return curry(fn, ...savedArgs, ...args);
     }
 
 }
