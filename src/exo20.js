@@ -9,14 +9,7 @@ export const query = array =>
       }));
     },
     orderBy(key) {
-      //TODO: trier les éléments selon une propriété
-      //return this.
-      /*let sortedValues = this.map(e => e[key]).sort();
-      let itemsByValue = sortedValues.map(val => this.filter(e => e[key] === val));
-      let result = [];
-      itemsByValue.forEach(subarray =>  result.push(...subarray));
-      return query(result);*/
-
+      //TODO: trier les éléments selon une propriét
       return query(
           this.sort((a,b) => {
               return (a[key] === b[key])
