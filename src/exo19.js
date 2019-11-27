@@ -34,7 +34,7 @@ export const countFunctionCalls = fn => {
       if (prop === 'count') {
         return counter;
       }
-      return undefined;
+      return Reflect.get(obj, prop);
     }
   });
 };
