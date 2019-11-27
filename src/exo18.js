@@ -1,13 +1,9 @@
 export const range = (start, end) => {
 
-  let data = [];
-  for (let i = start ; i <= end; i++) {
-      data.push(i);
-  }
-  
+  let i = start;
   return {
     [Symbol.iterator]: function*() {
-      while(data.length) yield data.shift(); 
+      while (i <= end) yield i++;
     }
   }
   // retourner un itérable itérant entre les deux bornes numériques
